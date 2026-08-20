@@ -4,21 +4,22 @@ import { z } from "zod";
 const KEY = "scoffey.guest";
 const REGISTRY_KEY = "scoffey.guests";
 
+// Messages are i18n keys (see src/lib/i18n.tsx) so the UI can localize them.
 export const guestSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, { message: "Nama minimal 2 karakter" })
-    .max(40, { message: "Nama maksimal 40 karakter" })
-    .regex(/^[\p{L}\p{M}\s.'-]+$/u, { message: "Nama hanya boleh huruf, spasi, titik, dan tanda hubung" }),
+    .min(2, { message: "err.name.min" })
+    .max(40, { message: "err.name.max" })
+    .regex(/^[\p{L}\p{M}\s.'-]+$/u, { message: "err.name.chars" }),
   phone: z
     .string()
     .trim()
-    .min(8, { message: "Nomor HP minimal 8 digit" })
-    .max(20, { message: "Nomor HP maksimal 20 karakter" })
-    .regex(/^\+?[0-9][0-9\s-]*$/, { message: "Gunakan angka saja, contoh 081234567890" })
+    .min(8, { message: "err.phone.min" })
+    .max(20, { message: "err.phone.max" })
+    .regex(/^\+?[0-9][0-9\s-]*$/, { message: "err.phone.format" })
     .refine((v) => v.replace(/\D/g, "").length >= 8 && v.replace(/\D/g, "").length <= 15, {
-      message: "Nomor HP harus 8–15 digit",
+      message: "err.phone.digits",
     }),
 });
 
