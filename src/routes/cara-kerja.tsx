@@ -76,20 +76,18 @@ function HowItWorks() {
             <div>
               <p className="font-display text-lg">
                 {welcome === "new"
-                  ? `Selamat bergabung, ${guest.name}!`
-                  : `Selamat datang kembali, ${guest.name}!`}
+                  ? `${t("welcome.new")}, ${guest.name}!`
+                  : `${t("welcome.back")}, ${guest.name}!`}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                {welcome === "new"
-                  ? "Akun pelangganmu sudah siap. Yuk mulai berkreasi."
-                  : "Senang melihatmu lagi di Scoffey."}
+                {welcome === "new" ? t("welcome.newSub") : t("welcome.backSub")}
               </p>
             </div>
             <button
               type="button"
               onClick={() => setWelcome(null)}
               className="rounded-lg p-1 text-muted-foreground transition-colors hover:bg-primary/20 hover:text-foreground"
-              aria-label="Tutup sambutan"
+              aria-label={t("welcome.close")}
             >
               <X className="h-4 w-4" />
             </button>

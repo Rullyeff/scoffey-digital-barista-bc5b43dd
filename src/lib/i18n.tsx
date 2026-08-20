@@ -190,9 +190,78 @@ const DICT = {
   "char.chocolatey": { id: "cokelat", en: "chocolatey" },
   "char.refreshing": { id: "menyegarkan", en: "refreshing" },
   "char.aromatic": { id: "aromatik", en: "aromatic" },
+
+  "login.title": { id: "Masuk sebagai pelanggan", en: "Sign in as a customer" },
+  "login.back": { id: "Kembali ke beranda", en: "Back to home" },
+  "login.new": { id: "Pelanggan baru", en: "New customer" },
+  "login.returning": { id: "Pelanggan terdaftar", en: "Returning customer" },
+  "login.name": { id: "Nama", en: "Name" },
+  "login.namePlaceholder": { id: "mis. Rangga", en: "e.g. Rangga" },
+  "login.phone": { id: "No. HP / WhatsApp", en: "Phone / WhatsApp number" },
+  "login.phoneReturning": {
+    id: "No. HP / WhatsApp terdaftar",
+    en: "Registered phone / WhatsApp number",
+  },
+  "login.phonePlaceholder": { id: "mis. 081234567890", en: "e.g. 081234567890" },
+  "login.register": { id: "Daftar & lanjut", en: "Register & continue" },
+  "login.submit": { id: "Masuk", en: "Sign in" },
+  "login.err.exists": {
+    id: "Nomor HP sudah terdaftar. Pilih masuk sebagai pelanggan terdaftar.",
+    en: "This number is already registered. Sign in as a returning customer.",
+  },
+  "login.err.register": {
+    id: "Gagal mendaftar. Coba lagi sebentar lagi.",
+    en: "Registration failed. Please try again shortly.",
+  },
+  "login.err.network": {
+    id: "Gagal terhubung ke server. Coba lagi.",
+    en: "Could not reach the server. Please try again.",
+  },
+  "login.err.blocked": {
+    id: "Akun ini sedang diblokir. Hubungi barista Scoffey.",
+    en: "This account is blocked. Please contact a Scoffey barista.",
+  },
+  "login.err.notFound": {
+    id: "Nomor HP belum terdaftar. Daftar dulu sebagai pelanggan baru.",
+    en: "This number is not registered yet. Sign up as a new customer first.",
+  },
+
+  "err.name.min": { id: "Nama minimal 2 karakter", en: "Name must be at least 2 characters" },
+  "err.name.max": { id: "Nama maksimal 40 karakter", en: "Name can be at most 40 characters" },
+  "err.name.chars": {
+    id: "Nama hanya boleh huruf, spasi, titik, dan tanda hubung",
+    en: "Name may only contain letters, spaces, dots, and hyphens",
+  },
+  "err.phone.min": { id: "Nomor HP minimal 8 digit", en: "Phone number needs at least 8 digits" },
+  "err.phone.max": {
+    id: "Nomor HP maksimal 20 karakter",
+    en: "Phone number can be at most 20 characters",
+  },
+  "err.phone.format": {
+    id: "Gunakan angka saja, contoh 081234567890",
+    en: "Use digits only, e.g. 081234567890",
+  },
+  "err.phone.digits": {
+    id: "Nomor HP harus 8–15 digit",
+    en: "Phone number must be 8–15 digits",
+  },
+
+  "welcome.new": { id: "Selamat bergabung", en: "Welcome aboard" },
+  "welcome.back": { id: "Selamat datang kembali", en: "Welcome back" },
+  "welcome.newSub": {
+    id: "Akun pelangganmu sudah siap. Yuk mulai berkreasi.",
+    en: "Your customer account is ready. Let's start creating.",
+  },
+  "welcome.backSub": {
+    id: "Senang melihatmu lagi di Scoffey.",
+    en: "Great to see you again at Scoffey.",
+  },
+  "welcome.close": { id: "Tutup sambutan", en: "Dismiss welcome" },
 } as const;
 
 export type TKey = keyof typeof DICT;
+
+export const isTKey = (key: string): key is TKey => key in DICT;
 
 const LangContext = createContext<{
   lang: Lang;
