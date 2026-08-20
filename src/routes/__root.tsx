@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/lib/i18n";
+import { PaletteProvider } from "@/lib/palette";
 import { GuestProvider } from "@/lib/guest";
 
 function NotFoundComponent() {
@@ -111,7 +112,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const themeScript = `try{var t=localStorage.getItem("scoffey-theme");if(t!=="light"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}else{document.documentElement.style.colorScheme="light"}}catch(e){document.documentElement.classList.add("dark")}`;
+const themeScript = `try{var t=localStorage.getItem("scoffey-theme");if(t!=="light"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}else{document.documentElement.style.colorScheme="light"}}catch(e){document.documentElement.classList.add("dark")}
+try{var p=localStorage.getItem("scoffey-palette")||"signature";document.documentElement.setAttribute("data-palette",p)}catch(e){document.documentElement.setAttribute("data-palette","signature")}`;
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
@@ -133,13 +135,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GuestProvider>
-        <LanguageProvider>
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-          <Toaster position="top-center" richColors />
-        </LanguageProvider>
-      </GuestProvider>
+      <PaletteProvider>
+        <GuestProvider>
+          <LanguageProvider>
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+            <Toaster position="top-center" richColors />
+          </LanguageProvider>
+        </GuestProvider>
+      </PaletteProvider>
     </QueryClientProvider>
   );
 }
