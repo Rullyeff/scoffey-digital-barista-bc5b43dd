@@ -1,0 +1,337 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-cream: var(--cream);
+  --color-copper: var(--copper);
+  --color-copper-foreground: var(--copper-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --shadow-card: 0 20px 60px -25px oklch(0.2 0.07 30 / 0.7);
+  --shadow-glow: 0 0 50px -12px oklch(0.62 0.2 40 / 0.6);
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.965 0.022 55);
+  --foreground: oklch(0.25 0.055 32);
+  --card: oklch(0.99 0.014 60);
+  --card-foreground: oklch(0.25 0.055 32);
+  --popover: oklch(0.99 0.014 60);
+  --popover-foreground: oklch(0.25 0.055 32);
+  --primary: oklch(0.48 0.16 32);
+  --primary-foreground: oklch(0.97 0.02 60);
+  --secondary: oklch(0.92 0.035 55);
+  --secondary-foreground: oklch(0.3 0.06 32);
+  --muted: oklch(0.92 0.03 55);
+  --muted-foreground: oklch(0.46 0.05 38);
+  --accent: oklch(0.6 0.19 40);
+  --accent-foreground: oklch(0.98 0.015 60);
+  --destructive: oklch(0.52 0.21 22);
+  --destructive-foreground: oklch(0.98 0.012 60);
+  --border: oklch(0.85 0.04 50);
+  --input: oklch(0.85 0.04 50);
+  --ring: oklch(0.48 0.16 32);
+  --cream: oklch(0.4 0.09 38);
+  --copper: oklch(0.6 0.19 40);
+  --copper-foreground: oklch(0.98 0.015 60);
+  --chart-1: oklch(0.48 0.16 32);
+  --chart-2: oklch(0.6 0.19 40);
+  --chart-3: oklch(0.7 0.13 60);
+  --chart-4: oklch(0.38 0.11 25);
+  --chart-5: oklch(0.55 0.07 45);
+  --sidebar: oklch(0.94 0.03 52);
+  --sidebar-foreground: oklch(0.25 0.055 32);
+  --sidebar-primary: oklch(0.48 0.16 32);
+  --sidebar-primary-foreground: oklch(0.97 0.02 60);
+  --sidebar-accent: oklch(0.92 0.035 55);
+  --sidebar-accent-foreground: oklch(0.25 0.055 32);
+  --sidebar-border: oklch(0.85 0.04 50);
+  --sidebar-ring: oklch(0.48 0.16 32);
+}
+
+.dark {
+  --background: oklch(0.19 0.045 28);
+  --foreground: oklch(0.94 0.025 65);
+  --card: oklch(0.24 0.06 30);
+  --card-foreground: oklch(0.94 0.025 65);
+  --popover: oklch(0.24 0.06 30);
+  --popover-foreground: oklch(0.94 0.025 65);
+  --primary: oklch(0.62 0.2 40);
+  --primary-foreground: oklch(0.16 0.04 28);
+  --secondary: oklch(0.3 0.07 30);
+  --secondary-foreground: oklch(0.94 0.025 65);
+  --muted: oklch(0.28 0.055 30);
+  --muted-foreground: oklch(0.75 0.045 60);
+  --accent: oklch(0.7 0.18 48);
+  --accent-foreground: oklch(0.18 0.045 28);
+  --destructive: oklch(0.58 0.21 22);
+  --destructive-foreground: oklch(0.97 0.012 60);
+  --border: oklch(0.35 0.07 32);
+  --input: oklch(0.35 0.07 32);
+  --ring: oklch(0.7 0.18 48);
+  --cream: oklch(0.92 0.04 70);
+  --copper: oklch(0.7 0.18 48);
+  --copper-foreground: oklch(0.18 0.045 28);
+  --chart-1: oklch(0.62 0.2 40);
+  --chart-2: oklch(0.7 0.18 48);
+  --chart-3: oklch(0.8 0.13 65);
+  --chart-4: oklch(0.5 0.16 25);
+  --chart-5: oklch(0.6 0.08 45);
+  --sidebar: oklch(0.22 0.05 29);
+  --sidebar-foreground: oklch(0.94 0.025 65);
+  --sidebar-primary: oklch(0.62 0.2 40);
+  --sidebar-primary-foreground: oklch(0.16 0.04 28);
+  --sidebar-accent: oklch(0.3 0.07 30);
+  --sidebar-accent-foreground: oklch(0.94 0.025 65);
+  --sidebar-border: oklch(0.35 0.07 32);
+  --sidebar-ring: oklch(0.7 0.18 48);
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
+
+
+/* Wood grain textures — layered streaks evoking rosewood figure */
+@utility wood-grain {
+  position: relative;
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      color-mix(in oklab, var(--color-foreground) 7%, transparent) 0px,
+      transparent 2px,
+      transparent 5px,
+      color-mix(in oklab, var(--color-foreground) 4%, transparent) 7px,
+      transparent 9px,
+      transparent 16px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      color-mix(in oklab, var(--color-primary) 8%, transparent) 0px,
+      transparent 3px,
+      transparent 11px,
+      color-mix(in oklab, var(--color-accent) 6%, transparent) 13px,
+      transparent 18px,
+      transparent 34px
+    );
+  background-blend-mode: multiply;
+}
+
+@utility wood-grain-strong {
+  background-image:
+    repeating-linear-gradient(
+      91deg,
+      color-mix(in oklab, var(--color-foreground) 14%, transparent) 0px,
+      transparent 2px,
+      transparent 6px,
+      color-mix(in oklab, var(--color-foreground) 9%, transparent) 8px,
+      transparent 10px,
+      transparent 15px
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in oklab, var(--color-primary) 22%, transparent),
+      color-mix(in oklab, var(--color-accent) 18%, transparent) 45%,
+      color-mix(in oklab, var(--color-primary) 26%, transparent)
+    );
+}
+
+@layer base {
+  body {
+    background-image:
+      repeating-linear-gradient(
+        92deg,
+        color-mix(in oklab, var(--color-foreground) 9%, transparent) 0px,
+        transparent 2px,
+        transparent 6px,
+        color-mix(in oklab, var(--color-foreground) 6%, transparent) 8px,
+        transparent 10px,
+        transparent 18px
+      ),
+      repeating-linear-gradient(
+        87deg,
+        color-mix(in oklab, var(--color-primary) 12%, transparent) 0px,
+        transparent 4px,
+        transparent 14px,
+        color-mix(in oklab, var(--color-accent) 9%, transparent) 17px,
+        transparent 22px,
+        transparent 40px
+      );
+    background-attachment: fixed;
+  }
+}
+
+/* Overlay serat kayu di atas seluruh halaman (tipis, tidak mengganggu klik) */
+@layer base {
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.55;
+    background-image:
+      repeating-linear-gradient(
+        92deg,
+        color-mix(in oklab, var(--color-foreground) 22%, transparent) 0px,
+        transparent 2px,
+        transparent 5px,
+        color-mix(in oklab, var(--color-foreground) 14%, transparent) 7px,
+        transparent 9px,
+        transparent 17px
+      ),
+      repeating-linear-gradient(
+        87deg,
+        color-mix(in oklab, var(--color-primary) 20%, transparent) 0px,
+        transparent 4px,
+        transparent 15px,
+        color-mix(in oklab, var(--color-accent) 16%, transparent) 18px,
+        transparent 24px,
+        transparent 44px
+      );
+  }
+}
+
+/* Soft floating blobs for Studio page background */
+@utility blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.75;
+  mix-blend-mode: normal;
+}
+
+@utility blob-1 {
+  width: 540px;
+  height: 540px;
+  top: -120px;
+  left: -80px;
+  background: color-mix(in oklch, var(--color-primary) 80%, transparent);
+  animation: float 18s ease-in-out infinite;
+}
+
+@utility blob-2 {
+  width: 480px;
+  height: 480px;
+  top: 12%;
+  right: -80px;
+  background: color-mix(in oklch, var(--color-copper) 75%, transparent);
+  animation: float 22s ease-in-out infinite reverse;
+}
+
+@utility blob-3 {
+  width: 420px;
+  height: 420px;
+  bottom: 12%;
+  left: -80px;
+  background: color-mix(in oklch, var(--color-accent) 70%, transparent);
+  animation: float 20s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+@utility blob-4 {
+  width: 380px;
+  height: 380px;
+  bottom: -60px;
+  right: 15%;
+  background: color-mix(in oklch, var(--color-cream) 65%, transparent);
+  animation: float 24s ease-in-out infinite reverse;
+  animation-delay: -12s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  33% {
+    transform: translateY(-24px) translateX(16px) scale(1.04);
+  }
+  66% {
+    transform: translateY(14px) translateX(-12px) scale(0.98);
+  }
+}
+
+/* Raised glass card surface for Studio content */
+@utility studio-card {
+  background: color-mix(in oklch, var(--color-card) 92%, transparent);
+  backdrop-filter: blur(16px) saturate(130%);
+  border: 1px solid color-mix(in oklch, var(--color-border) 80%, transparent);
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px color-mix(in oklch, var(--color-primary) 10%, transparent) inset,
+    0 0 80px -20px color-mix(in oklch, var(--color-primary) 18%, transparent);
+}
+
