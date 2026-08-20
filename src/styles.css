@@ -66,6 +66,8 @@
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --shadow-card: 0 20px 60px -25px oklch(0.2 0.07 30 / 0.7);
   --shadow-glow: 0 0 50px -12px oklch(0.62 0.2 40 / 0.6);
+  --text-raised: 0 1px 0 color-mix(in oklch, var(--color-foreground) 18%, transparent), 0 2px 8px color-mix(in oklch, var(--color-background) 55%, transparent);
+  --text-raised-strong: 0 1px 0 color-mix(in oklch, var(--color-foreground) 28%, transparent), 0 3px 12px color-mix(in oklch, var(--color-background) 65%, transparent);
 }
 
 :root {
