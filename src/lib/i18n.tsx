@@ -261,6 +261,8 @@ const DICT = {
 
 export type TKey = keyof typeof DICT;
 
+export const isTKey = (key: string): key is TKey => key in DICT;
+
 const LangContext = createContext<{
   lang: Lang;
   setLang: (l: Lang) => void;
