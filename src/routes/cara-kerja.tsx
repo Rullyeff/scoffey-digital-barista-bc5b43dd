@@ -3,7 +3,6 @@ import { ArrowRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CycleGrid } from "@/components/barista/CycleGrid";
-import { LanguageToggle } from "@/components/barista/LanguageToggle";
 import { ThemeToggle } from "@/components/barista/ThemeToggle";
 import { LanguageProvider, useI18n } from "@/lib/i18n";
 import { GuestProvider, useGuest } from "@/lib/guest";
@@ -63,7 +62,6 @@ function HowItWorks() {
         <Link to="/" className="font-display text-lg tracking-tight">
           SCOFFEY <span className="text-primary">Digital Barista</span>
         </Link>
-        <LanguageToggle />
         <ThemeToggle />
       </header>
 

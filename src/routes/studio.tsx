@@ -3,7 +3,6 @@ import { ArrowLeft, LogIn, LogOut, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { BaristaStudio } from "@/components/barista/BaristaStudio";
-import { LanguageToggle } from "@/components/barista/LanguageToggle";
 import { ThemeToggle } from "@/components/barista/ThemeToggle";
 import { StudioBackground } from "@/components/barista/StudioBackground";
 import { LanguageProvider, useI18n } from "@/lib/i18n";
@@ -65,7 +64,6 @@ function Studio() {
               {t("nav.board")}
             </Link>
           </nav>
-          <LanguageToggle />
         <ThemeToggle />
           {guest ? (
             <div className="flex items-center gap-2">

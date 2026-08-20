@@ -8,7 +8,6 @@ import { GuestProvider, useGuest } from "@/lib/guest";
 import { guestSchema, normalizePhone } from "@/lib/guest-utils";
 import { LanguageProvider, useI18n } from "@/lib/i18n";
 import { isTKey } from "@/lib/i18n-dict";
-import { LanguageToggle } from "@/components/barista/LanguageToggle";
 import { loginCustomer, registerCustomer } from "@/lib/shop.functions";
 
 
@@ -77,7 +76,6 @@ function LoginPage() {
             <Coffee className="h-5 w-5" />
             <span className="text-xs uppercase tracking-[0.3em]">Scoffey</span>
           </div>
-          <LanguageToggle />
         </div>
 
         <h1 className="mt-5 font-display text-3xl tracking-tight">{t("login.title")}</h1>
