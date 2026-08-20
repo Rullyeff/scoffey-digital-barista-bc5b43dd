@@ -163,6 +163,16 @@
   h2,
   h3 {
     font-family: var(--font-display);
+    text-shadow: var(--text-raised-strong);
+  }
+
+  p,
+  span,
+  a,
+  button,
+  label,
+  li {
+    text-shadow: var(--text-raised);
   }
 }
 
