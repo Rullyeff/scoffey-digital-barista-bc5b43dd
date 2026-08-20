@@ -5,8 +5,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { CreationBoard } from "@/components/barista/CreationBoard";
 import { LanguageToggle } from "@/components/barista/LanguageToggle";
 import { ThemeToggle } from "@/components/barista/ThemeToggle";
-import { LanguageProvider, useI18n } from "@/lib/i18n";
-import { GuestProvider, useGuest } from "@/lib/guest";
+import { useI18n } from "@/lib/i18n";
+import { useGuest } from "@/lib/guest";
 import { CreationsProvider, useCreations } from "@/lib/creations";
 
 export const Route = createFileRoute("/")({
@@ -33,13 +33,9 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <GuestProvider>
-      <LanguageProvider>
         <CreationsProvider>
           <Home />
         </CreationsProvider>
-      </LanguageProvider>
-    </GuestProvider>
   );
 }
 

@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Coffee, Loader2, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GuestProvider, useGuest } from "@/lib/guest";
+import { useGuest } from "@/lib/guest";
 import { guestSchema, normalizePhone } from "@/lib/guest-utils";
-import { LanguageProvider, useI18n } from "@/lib/i18n";
+import { useI18n } from "@/lib/i18n";
 import { isTKey } from "@/lib/i18n-dict";
 import { loginCustomer, registerCustomer } from "@/lib/shop.functions";
 
@@ -37,11 +37,7 @@ export const Route = createFileRoute("/login")({
 
 function LoginRoute() {
   return (
-    <GuestProvider>
-      <LanguageProvider>
         <LoginPage />
-      </LanguageProvider>
-    </GuestProvider>
   );
 }
 
