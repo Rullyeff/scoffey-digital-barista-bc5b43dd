@@ -5,6 +5,8 @@ import { ArrowLeft, Coffee, Loader2, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { GuestProvider, guestSchema, normalizePhone, useGuest } from "@/lib/guest";
+import { LanguageProvider, isTKey, useI18n } from "@/lib/i18n";
+import { LanguageToggle } from "@/components/barista/LanguageToggle";
 import { loginCustomer, registerCustomer } from "@/lib/shop.functions";
 
 
@@ -14,7 +16,7 @@ const ADMIN_LOGIN_PHONE = "1234512345";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Masuk sebagai Pelanggan — Scoffey Digital Barista" },
+      { title: "Sign In — Scoffey Digital Barista" },
       {
         name: "description",
         content:
@@ -35,13 +37,17 @@ export const Route = createFileRoute("/login")({
 function LoginRoute() {
   return (
     <GuestProvider>
-      <LoginPage />
+      <LanguageProvider>
+        <LoginPage />
+      </LanguageProvider>
     </GuestProvider>
   );
 }
 
 function LoginPage() {
   const { ready, signInAsGuest, signOut } = useGuest();
+  const { t } = useI18n();
+  const tr = (key?: string) => (key && isTKey(key) ? t(key) : key);
   const navigate = useNavigate();
   const register = useServerFn(registerCustomer);
   const login = useServerFn(loginCustomer);
@@ -64,19 +70,22 @@ function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-6 py-16 font-sans text-foreground">
       <div className="w-full max-w-md rounded-[2rem] border border-border bg-card p-8 shadow-[var(--shadow-card)]">
-        <div className="flex items-center gap-2 text-primary">
-          <Coffee className="h-5 w-5" />
-          <span className="text-xs uppercase tracking-[0.3em]">Scoffey</span>
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-primary">
+            <Coffee className="h-5 w-5" />
+            <span className="text-xs uppercase tracking-[0.3em]">Scoffey</span>
+          </div>
+          <LanguageToggle />
         </div>
 
-        <h1 className="mt-5 font-display text-3xl tracking-tight">Masuk sebagai pelanggan</h1>
+        <h1 className="mt-5 font-display text-3xl tracking-tight">{t("login.title")}</h1>
 
         <Link
           to="/"
           className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          Kembali ke beranda
+          {t("login.back")}
         </Link>
 
         <div className="mt-6 grid grid-cols-2 gap-1 rounded-xl border border-border bg-background p-1">
@@ -90,7 +99,7 @@ function LoginPage() {
               mode === "new" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Pelanggan baru
+            {t("login.new")}
           </button>
           <button
             type="button"
@@ -104,7 +113,7 @@ function LoginPage() {
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            Pelanggan terdaftar
+            {t("login.returning")}
           </button>
         </div>
 
@@ -124,7 +133,7 @@ function LoginPage() {
               const result = guestSchema.safeParse({ name, phone });
               if (!result.success) {
                 const f = result.error.flatten().fieldErrors;
-                setErrors({ name: f.name?.[0], phone: f.phone?.[0] });
+                setErrors({ name: tr(f.name?.[0]), phone: tr(f.phone?.[0]) });
                 return;
               }
               setErrors({});
@@ -135,8 +144,8 @@ function LoginPage() {
                   setErrors({
                     phone:
                       res.reason === "exists"
-                        ? "Nomor HP sudah terdaftar. Pilih masuk sebagai pelanggan terdaftar."
-                        : "Gagal mendaftar. Coba lagi sebentar lagi.",
+                        ? t("login.err.exists")
+                        : t("login.err.register"),
                   });
                   return;
                 }
@@ -145,7 +154,7 @@ function LoginPage() {
                 localStorage.setItem("scoffey.welcome", "new");
                 navigate({ to: "/cara-kerja", replace: true });
               } catch {
-                setErrors({ phone: "Gagal terhubung ke server. Coba lagi." });
+                setErrors({ phone: t("login.err.network") });
               } finally {
                 setBusy(false);
               }
@@ -153,13 +162,13 @@ function LoginPage() {
           >
             <div className="space-y-2">
               <label htmlFor="guest-name" className="text-sm font-medium">
-                Nama
+                {t("login.name")}
               </label>
               <Input
                 id="guest-name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="mis. Rangga"
+                placeholder={t("login.namePlaceholder")}
                 maxLength={40}
                 autoComplete="off"
                 aria-invalid={!!errors.name}
@@ -169,7 +178,7 @@ function LoginPage() {
 
             <div className="space-y-2">
               <label htmlFor="guest-phone" className="text-sm font-medium">
-                No. HP / WhatsApp
+                {t("login.phone")}
               </label>
               <Input
                 id="guest-phone"
@@ -177,7 +186,7 @@ function LoginPage() {
                 inputMode="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="mis. 081234567890"
+                placeholder={t("login.phonePlaceholder")}
                 maxLength={20}
                 autoComplete="off"
                 aria-invalid={!!errors.phone}
@@ -187,7 +196,7 @@ function LoginPage() {
 
             <Button type="submit" size="lg" className="w-full" disabled={busy}>
               {busy ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserRound className="mr-2 h-4 w-4" />}
-              Daftar &amp; lanjut
+              {t("login.register")}
             </Button>
           </form>
         ) : (
@@ -205,7 +214,7 @@ function LoginPage() {
               }
               const result = guestSchema.shape.phone.safeParse(returningPhone);
               if (!result.success) {
-                setErrors({ phone: result.error.issues[0]?.message });
+                setErrors({ phone: tr(result.error.issues[0]?.message) });
                 return;
               }
               setErrors({});
@@ -216,8 +225,8 @@ function LoginPage() {
                   setErrors({
                     phone:
                       res.reason === "blocked"
-                        ? "Akun ini sedang diblokir. Hubungi barista Scoffey."
-                        : "Nomor HP belum terdaftar. Daftar dulu sebagai pelanggan baru.",
+                        ? t("login.err.blocked")
+                        : t("login.err.notFound"),
                   });
                   return;
                 }
@@ -226,7 +235,7 @@ function LoginPage() {
                 localStorage.setItem("scoffey.welcome", "back");
                 navigate({ to: "/cara-kerja", replace: true });
               } catch {
-                setErrors({ phone: "Gagal terhubung ke server. Coba lagi." });
+                setErrors({ phone: t("login.err.network") });
               } finally {
                 setBusy(false);
               }
@@ -234,7 +243,7 @@ function LoginPage() {
           >
             <div className="space-y-2">
               <label htmlFor="returning-phone" className="text-sm font-medium">
-                No. HP / WhatsApp terdaftar
+                {t("login.phoneReturning")}
               </label>
               <Input
                 id="returning-phone"
@@ -242,7 +251,7 @@ function LoginPage() {
                 inputMode="tel"
                 value={returningPhone}
                 onChange={(e) => setReturningPhone(e.target.value)}
-                placeholder="mis. 081234567890"
+                placeholder={t("login.phonePlaceholder")}
                 maxLength={20}
                 autoComplete="off"
                 aria-invalid={!!errors.phone}
@@ -252,7 +261,7 @@ function LoginPage() {
 
             <Button type="submit" size="lg" className="w-full" disabled={busy}>
               {busy ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <UserRound className="mr-2 h-4 w-4" />}
-              Masuk
+              {t("login.submit")}
             </Button>
           </form>
         )}
