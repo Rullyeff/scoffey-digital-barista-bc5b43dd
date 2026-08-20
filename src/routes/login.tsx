@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Coffee, Loader2, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GuestProvider, guestSchema, normalizePhone, useGuest } from "@/lib/guest";
-import { LanguageProvider, isTKey, useI18n } from "@/lib/i18n";
+import { GuestProvider, useGuest } from "@/lib/guest";
+import { guestSchema, normalizePhone } from "@/lib/guest-utils";
+import { LanguageProvider, useI18n } from "@/lib/i18n";
+import { isTKey } from "@/lib/i18n-dict";
 import { LanguageToggle } from "@/components/barista/LanguageToggle";
 import { loginCustomer, registerCustomer } from "@/lib/shop.functions";
 
