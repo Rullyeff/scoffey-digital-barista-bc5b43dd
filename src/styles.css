@@ -66,8 +66,22 @@
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --shadow-card: 0 20px 60px -25px oklch(0.2 0.07 30 / 0.7);
   --shadow-glow: 0 0 50px -12px oklch(0.62 0.2 40 / 0.6);
-  --text-raised: 0 1px 0 color-mix(in oklch, var(--color-foreground) 10%, transparent), 0 2px 6px color-mix(in oklch, var(--color-background) 45%, transparent);
-  --text-raised-strong: 0 1px 0 color-mix(in oklch, var(--color-foreground) 22%, transparent), 0 3px 10px color-mix(in oklch, var(--color-background) 55%, transparent);
+  /* Emboss tokens — konsisten untuk judul, teks, tombol, dan card */
+  --emboss-highlight: color-mix(in oklab, var(--color-background) 60%, white);
+  --emboss-shade: color-mix(in oklab, var(--color-foreground) 45%, transparent);
+  --text-raised:
+    0 1px 0 var(--emboss-highlight),
+    0 -1px 0 color-mix(in oklab, var(--color-foreground) 16%, transparent),
+    0 2px 4px color-mix(in oklab, var(--color-foreground) 20%, transparent);
+  --text-raised-strong:
+    0 1px 0 var(--emboss-highlight),
+    0 -1px 1px color-mix(in oklab, var(--color-foreground) 26%, transparent),
+    0 3px 8px color-mix(in oklab, var(--color-foreground) 30%, transparent);
+  --shadow-emboss:
+    inset 0 1px 0 color-mix(in oklab, var(--color-background) 70%, white),
+    inset 0 -1px 0 color-mix(in oklab, var(--color-foreground) 12%, transparent),
+    0 1px 2px color-mix(in oklab, var(--color-foreground) 14%, transparent),
+    0 10px 24px -14px color-mix(in oklab, var(--color-foreground) 45%, transparent);
 }
 
 :root {
