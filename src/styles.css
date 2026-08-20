@@ -66,6 +66,8 @@
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --shadow-card: 0 20px 60px -25px oklch(0.2 0.07 30 / 0.7);
   --shadow-glow: 0 0 50px -12px oklch(0.62 0.2 40 / 0.6);
+  --text-raised: 0 1px 0 color-mix(in oklch, var(--color-foreground) 10%, transparent), 0 2px 6px color-mix(in oklch, var(--color-background) 45%, transparent);
+  --text-raised-strong: 0 1px 0 color-mix(in oklch, var(--color-foreground) 22%, transparent), 0 3px 10px color-mix(in oklch, var(--color-background) 55%, transparent);
 }
 
 :root {
@@ -161,6 +163,16 @@
   h2,
   h3 {
     font-family: var(--font-display);
+    text-shadow: var(--text-raised-strong);
+  }
+
+  p,
+  span,
+  a,
+  button,
+  label,
+  li {
+    text-shadow: var(--text-raised);
   }
 }
 
@@ -214,19 +226,19 @@
     background-image:
       repeating-linear-gradient(
         92deg,
-        color-mix(in oklab, var(--color-foreground) 9%, transparent) 0px,
+        color-mix(in oklab, var(--color-foreground) 16%, var(--color-background)) 0px,
         transparent 2px,
         transparent 6px,
-        color-mix(in oklab, var(--color-foreground) 6%, transparent) 8px,
+        color-mix(in oklab, var(--color-foreground) 11%, var(--color-background)) 8px,
         transparent 10px,
         transparent 18px
       ),
       repeating-linear-gradient(
         87deg,
-        color-mix(in oklab, var(--color-primary) 12%, transparent) 0px,
+        color-mix(in oklab, var(--color-primary) 20%, var(--color-background)) 0px,
         transparent 4px,
         transparent 14px,
-        color-mix(in oklab, var(--color-accent) 9%, transparent) 17px,
+        color-mix(in oklab, var(--color-accent) 16%, var(--color-background)) 17px,
         transparent 22px,
         transparent 40px
       );
@@ -234,7 +246,7 @@
   }
 }
 
-/* Overlay serat kayu di atas seluruh halaman (tipis, tidak mengganggu klik) */
+/* Overlay serat kayu di atas seluruh halaman (sangat tipis, tidak mengganggu klik) */
 @layer base {
   body::after {
     content: "";
@@ -242,23 +254,23 @@
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.55;
+    opacity: 0.22;
     background-image:
       repeating-linear-gradient(
         92deg,
-        color-mix(in oklab, var(--color-foreground) 22%, transparent) 0px,
+        color-mix(in oklab, var(--color-foreground) 35%, var(--color-background)) 0px,
         transparent 2px,
         transparent 5px,
-        color-mix(in oklab, var(--color-foreground) 14%, transparent) 7px,
+        color-mix(in oklab, var(--color-foreground) 22%, var(--color-background)) 7px,
         transparent 9px,
         transparent 17px
       ),
       repeating-linear-gradient(
         87deg,
-        color-mix(in oklab, var(--color-primary) 20%, transparent) 0px,
+        color-mix(in oklab, var(--color-primary) 30%, var(--color-background)) 0px,
         transparent 4px,
         transparent 15px,
-        color-mix(in oklab, var(--color-accent) 16%, transparent) 18px,
+        color-mix(in oklab, var(--color-accent) 24%, var(--color-background)) 18px,
         transparent 24px,
         transparent 44px
       );
