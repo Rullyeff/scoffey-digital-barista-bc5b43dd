@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CycleGrid } from "@/components/barista/CycleGrid";
 import { ThemeToggle } from "@/components/barista/ThemeToggle";
-import { LanguageProvider, useI18n } from "@/lib/i18n";
-import { GuestProvider, useGuest } from "@/lib/guest";
+import { useI18n } from "@/lib/i18n";
+import { useGuest } from "@/lib/guest";
 
 const WELCOME_KEY = "scoffey.welcome";
 
@@ -33,11 +33,7 @@ export const Route = createFileRoute("/cara-kerja")({
 
 function HowItWorksRoute() {
   return (
-    <GuestProvider>
-      <LanguageProvider>
         <HowItWorks />
-      </LanguageProvider>
-    </GuestProvider>
   );
 }
 
