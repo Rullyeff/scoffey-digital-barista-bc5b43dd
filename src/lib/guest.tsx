@@ -10,6 +10,16 @@ import {
 
 export type { Guest, GuestInput } from "./guest-utils";
 
+type GuestContextValue = {
+  guest: Guest | null;
+  ready: boolean;
+  signInAsGuest: (input: GuestInput) => Guest;
+  signInWithPhone: (phone: string) => Guest | null;
+  signOut: () => void;
+};
+
+const GuestContext = createContext<GuestContextValue | null>(null);
+
 function readGuest(): Guest | null {
   try {
     const raw = localStorage.getItem(KEY);

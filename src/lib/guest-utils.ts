@@ -33,16 +33,6 @@ export function normalizePhone(raw: string) {
   return digits;
 }
 
-type GuestContextValue = {
-  guest: Guest | null;
-  ready: boolean;
-  signInAsGuest: (input: GuestInput) => Guest;
-  signInWithPhone: (phone: string) => Guest | null;
-  signOut: () => void;
-};
-
-const GuestContext = createContext<GuestContextValue | null>(null);
-
 function readRegistry(): Guest[] {
   try {
     const raw = localStorage.getItem(REGISTRY_KEY);
