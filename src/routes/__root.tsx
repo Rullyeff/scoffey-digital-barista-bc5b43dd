@@ -111,7 +111,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const themeScript = `try{var t=localStorage.getItem("scoffey-theme");if(t!=="light"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}else{document.documentElement.style.colorScheme="light"}}catch(e){document.documentElement.classList.add("dark")}`;
+const themeScript = `try{var t=localStorage.getItem("scoffey-theme");if(t!=="light"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}else{document.documentElement.style.colorScheme="light"}}catch(e){document.documentElement.classList.add("dark")}
+try{var p=localStorage.getItem("scoffey-palette")||"signature";document.documentElement.setAttribute("data-palette",p)}catch(e){document.documentElement.setAttribute("data-palette","signature")}`;
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
