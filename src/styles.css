@@ -175,7 +175,10 @@
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     text-shadow: var(--text-raised-strong);
   }
@@ -185,10 +188,28 @@
   a,
   button,
   label,
-  li {
+  li,
+  input::placeholder,
+  [data-slot="card-title"],
+  [data-slot="card-description"] {
     text-shadow: var(--text-raised);
   }
+
+  /* Emboss permukaan: tombol dan card tampil timbul merata */
+  button:not([data-slot="tab"]):not(.no-emboss),
+  [data-slot="button"],
+  [data-slot="card"] {
+    box-shadow: var(--shadow-emboss);
+  }
+
+  button:active:not(.no-emboss),
+  [data-slot="button"]:active {
+    box-shadow:
+      inset 0 2px 4px color-mix(in oklab, var(--color-foreground) 22%, transparent),
+      0 1px 1px color-mix(in oklab, var(--color-foreground) 10%, transparent);
+  }
 }
+
 
 
 /* Wood grain textures — layered streaks evoking rosewood figure */
